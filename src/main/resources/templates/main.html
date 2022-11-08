@@ -39,7 +39,6 @@
                 timeoutHandle = setTimeout(tick, 1000);
             } else {
                 if (minutes >= 1) {
-                    // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
                     setTimeout(function () {
                         countdown(minutes - 1, 59);
                     }, 1000);
@@ -49,6 +48,6 @@
         tick();
     }
 
-    countdown(10, 00);  // 이 부분을 변경하면 시간을 바꿀수 있다
+    countdown(10, 00);
 </script>
 </html>

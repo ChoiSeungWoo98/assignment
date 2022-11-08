@@ -3,7 +3,6 @@ package com.example.assignment.domain.dao;
 import com.example.assignment.domain.vo.UserVO;
 import com.example.assignment.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,7 +17,7 @@ public class UserDAO {
         return userMapper.idCheck(userId) == 1;
     }
     public String select(){
-        return userMapper.select().toString();
+        return userMapper.select();
     }
     public UserVO login(UserVO userVO){
         return userMapper.login(userVO);

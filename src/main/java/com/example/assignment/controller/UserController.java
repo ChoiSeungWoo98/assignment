@@ -4,7 +4,6 @@ import com.example.assignment.domain.vo.UserVO;
 import com.example.assignment.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -67,29 +62,16 @@ public class UserController {
         calendar.add(calendar.MINUTE,10);
         String cookieTime = simpleDateFormat.format(calendar.getTime());
 
-//        String dbLastLogin = URLEncoder.encode(userService.login(userVO).getUserLastLogin(),"UTF-8");
 
         int cookiesLen = 2;
         Cookie[] LOGIN_USER = new Cookie[cookiesLen];
         LOGIN_USER[0] = new Cookie("userId",userService.login(userVO).getUserId());
         LOGIN_USER[1] = new Cookie("cookieTime",cookieTime);
-//        Cookie LOGIN_USER_ID = new Cookie("userId",userService.login(userVO).getUserId());
-//        Cookie LOGIN_USER_LAST_LOGIN = new Cookie("userLastLogin",dbLastLogin);
-//        Cookie LOGIN_USER_COOKIE_TIME = new Cookie("cookieTime",cookieTime);
 
         for (int i = 0; i < cookiesLen; i++){
             LOGIN_USER[i].setMaxAge(60*10);
             response.addCookie(LOGIN_USER[i]);
         }
-
-//        LOGIN_USER_ID.setMaxAge(60*10);
-//        response.addCookie(LOGIN_USER_ID);
-//
-//        LOGIN_USER_LAST_LOGIN.setMaxAge(60*10);
-//        response.addCookie(LOGIN_USER_LAST_LOGIN);
-//
-//        LOGIN_USER_COOKIE_TIME.setMaxAge(60*10);
-//        response.addCookie(LOGIN_USER_COOKIE_TIME);
 
         if (userService.login(userVO).getUserId().equals(null)){
             return "login";

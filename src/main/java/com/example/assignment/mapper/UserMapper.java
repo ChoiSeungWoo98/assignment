@@ -2,7 +2,6 @@ package com.example.assignment.mapper;
 
 import com.example.assignment.domain.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper {
