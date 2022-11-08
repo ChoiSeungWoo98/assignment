@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div>
+    <p th:text="${userId}"></p>
+    <p th:text="${userLastLogin}"></p>
+    <button type="button" onclick="location.href='/user/logout'">로그아웃</button>
+    <button id="open">타이머 보기</button>
+    <div id="black_bg"></div>
+    <div id="modal">
+        <p>만료 시 까지 남은 시간</p>
+        <div id=timer></div>
+        <button type="button" id="close">나가기</button>
+    </div>
+</div>
+</body>
+<script src="/js/main.js"></script>
+<script>
+    var cookies = document.cookie.length
+
+    if (cookies == 0){
+        location.href='/user/goLogin';
+    }
+</script>
+<script type="text/javascript">
+    var timeoutHandle;
+    function countdown(minutes, seconds) {
+        function tick() {
+            var counter = document.getElementById("timer");
+            counter.innerHTML =
+                minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+            seconds--;
+            if (seconds >= 0) {
+                timeoutHandle = setTimeout(tick, 1000);
+            } else {
+                if (minutes >= 1) {
+                    // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+                    setTimeout(function () {
+                        countdown(minutes - 1, 59);
+                    }, 1000);
+                }
+            }
+        }
+        tick();
+    }
+
+    countdown(10, 00);  // 이 부분을 변경하면 시간을 바꿀수 있다
+</script>
+</html>

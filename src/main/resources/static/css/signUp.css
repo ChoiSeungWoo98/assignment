@@ -1,0 +1,43 @@
+*{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: auto;
+}
+#title{
+    height: 50px;
+}
+#login{
+    height: 10%;
+}
+#loginForm{
+    margin-top: 5%;
+    width: 30%;
+    height: 100%;
+}
+.signUpBtn{
+    margin-top: 10%;
+    width: 60%;
+}
+
+.userId{
+    margin-right: 10px;
+}
+#idCheck{
+    width: 80px;
+    font-size: 1px;
+}
+
+.idCheck:hover{
+    width: 80px;
+    font-size: 1px;
+    background-color: darkgray;
+}
+
+.userPw{
+    margin-top: 10px;
+}
+.idForm{
+    display: flex;
+}
+

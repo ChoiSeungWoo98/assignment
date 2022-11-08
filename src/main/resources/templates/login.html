@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 창</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div>
+    <h1 id="title">로그인 화면</h1>
+    <div id="login">
+        <form action="/user/login" method="post" id="loginForm">
+            <div>
+                <input type="text" name="userId" class="userId" placeholder="아이디">
+            </div>
+            <div>
+                <input type="password" name="userPw" class="userPw" placeholder="비밀번호">
+            </div>
+            <button class="loginBtn">로그인</button>
+        </form>
+    </div>
+    <div id="signUp">
+        <button onclick="location.href='/user/goSignUp'" class="signUpBtn">회원가입</button>
+    </div>
+</div>
+</body>
+<script>
+    var cookies = document.cookie.length
+
+    if (cookies > 0){
+        location.href='/user/goMain';
+    }
+
+</script>
+</html>

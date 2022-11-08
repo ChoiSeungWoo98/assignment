@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<div>
+    <h1 id="title">회원가입 화면</h1>
+    <div id="login">
+        <form action="/user/signUp" method="post" id="loginForm">
+            <div class="idForm">
+                <input type="text" name="userId" class="userId" placeholder="아이디">
+                <button type="button" id="idCheck">중복검사</button>
+            </div>
+            <div>
+                <p id="suc" style="display: none; color: mediumblue"> 사용 가능한 아이디 입니다.</p>
+                <p id="fail" style="display: none; color: red;"> 사용 불가능한 아이디 입니다.</p>
+            </div>
+            <div>
+                <input type="password" name="userPw" class="userPw" placeholder="비밀번호">
+            </div>
+            <button type="submit" class="signUpBtn">가입하기</button>
+        </form>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#idCheck").click(function () {
+        $(".signUpBtn").prop("disabled", true);
+        $(".signUpBtn").attr("disabled","disabled");
+        const userId = $(".userId").val();
+        $.ajax({
+            type:"get",
+            async: false,
+            url: "/user/idCheck",
+            data: {userId: userId},
+            success: function (data) {
+                if(data) {
+                    $("#suc").css("display","none")
+                    $("#fail").css("display","block")
+                }else {
+                    $("#suc").css("display","block")
+                    $("#fail").css("display","none")
+                    $(".signUpBtn").prop("disabled", false);
+                    $(".signUpBtn").removeAttr("disabled");
+                }
+            }
+        })
+    });
+
+</script>
+</html>

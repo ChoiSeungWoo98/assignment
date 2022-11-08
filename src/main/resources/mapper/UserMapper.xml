@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.assignment.mapper.UserMapper">
+
+    <insert id="insert">
+        INSERT INTO tbl_user
+        (user_id, user_pw)
+        VALUES (#{userId}, #{userPw})
+    </insert>
+
+    <select id="login" resultType="UserVO">
+        SELECT *
+        FROM assignment1.tbl_user
+        WHERE user_id = #{userId} AND user_pw = #{userPw};
+    </select>
+
+    <select id="idCheck" resultType="_int">
+        SELECT COUNT(user_id)
+        FROM assignment1.tbl_user
+        WHERE user_id = #{userId};
+    </select>
+
+    <select id="select" resultType="String">
+        SELECT user_id, user_pw
+        FROM assignment1.tbl_user;
+    </select>
+
+    <update id="userLastLogin">
+        UPDATE assignment1.tbl_user
+        SET user_last_login= #{userLastLogin}
+        WHERE user_id = #{userId} AND user_pw = #{userPw};
+    </update>
+</mapper>
